@@ -4,20 +4,23 @@ import { Logger, JSONTransport } from "@deepkit/logger";
 
 import { HelloWorldControllerCli } from "./src/controller/hello-world.cli";
 import { MainControllerHttp } from "./src/http/main.http";
-import { TestControllerHttp } from "./src/http/test.http";
+import { CorsMiddleware, PublicControllerHttp } from "./src/http/public.http";
 import { HelloWorldControllerRpc } from "./src/controller/hello-world.rpc";
 import { Service } from "./src/app/service";
 import { AppConfig } from "./src/app/config";
 import { OpenAPIModule } from "./src/openapi/deepkit-openapi/module";
+import { httpMiddleware } from "@deepkit/http";
 
 new App({
   config: AppConfig,
+  middlewares: [httpMiddleware.for(CorsMiddleware)],
   controllers: [
     // HelloWorldControllerCli,
     MainControllerHttp,
+    PublicControllerHttp,
     // HelloWorldControllerRpc,
   ],
-  providers: [Service],
+  providers: [Service, CorsMiddleware],
   imports: [new OpenAPIModule(), new FrameworkModule({ debug: true })],
 })
   .loadConfigFromEnv({ envFilePath: ["production.env", ".env"] })
