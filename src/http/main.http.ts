@@ -1,4 +1,4 @@
-import { http } from "@deepkit/http";
+import { HttpBody, http } from "@deepkit/http";
 import { Service } from "../app/service";
 import * as fsPromise from "fs/promises";
 
@@ -10,8 +10,8 @@ export class MainControllerHttp {
     return fsPromise.readFile(`${__dirname}/${filePath}`, "utf8");
   }
 
-  @http.GET("/file/write/:filePath")
-  async write(filePath: string) {
-    return fsPromise.writeFile(`${__dirname}/${filePath}`, "utf8");
+  @http.POST("/file/write/:filePath")
+  async write(filePath: string, body: HttpBody<string>) {
+    return fsPromise.writeFile(`${__dirname}/${filePath}`, body, "utf8");
   }
 }
