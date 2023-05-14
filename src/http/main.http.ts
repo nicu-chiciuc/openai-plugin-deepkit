@@ -6,12 +6,12 @@ export class MainControllerHttp {
   constructor(private service: Service) {}
 
   @http.GET("/file/read/:filePath")
-  async hello(filePath: string) {
+  async readFile(filePath: string) {
     return fsPromise.readFile(`${__dirname}/${filePath}`, "utf8");
   }
 
   @http.POST("/file/write/:filePath")
-  async write(filePath: string, { content }: HttpBody<{ content: string }>) {
+  async writeFile(filePath: string, { content }: HttpBody<{ content: string }>) {
     return fsPromise.writeFile(`${__dirname}/${filePath}`, content, "utf8");
   }
 }
