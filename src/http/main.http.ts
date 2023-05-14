@@ -11,7 +11,7 @@ export class MainControllerHttp {
   }
 
   @http.POST("/file/write/:filePath")
-  async write(filePath: string, body: HttpBody<string>) {
-    return fsPromise.writeFile(`${__dirname}/${filePath}`, body, "utf8");
+  async write(filePath: string, { content }: HttpBody<{ content: string }>) {
+    return fsPromise.writeFile(`${__dirname}/${filePath}`, content, "utf8");
   }
 }
