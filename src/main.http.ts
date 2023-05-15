@@ -7,7 +7,7 @@ export class MainControllerHttp {
     return fsPromise.readFile(`${filePath}`, "utf8");
   }
 
-  @http.POST("/file/write/*")
+  @http.POST("/file/write/:filePath")
   async writeFile(
     filePath: HttpRegExp<string, ".*">,
     { content }: HttpBody<{ content: string }>
@@ -15,7 +15,7 @@ export class MainControllerHttp {
     return fsPromise.writeFile(`${filePath}`, content, "utf8");
   }
 
-  @http.GET("/file/list/*")
+  @http.GET("/file/list/:dirPath")
   async listFiles(dirPath: HttpRegExp<string, ".*">) {
     return fsPromise.readdir(`${dirPath}`);
   }
