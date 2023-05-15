@@ -8,7 +8,11 @@ import { OpenAPIModule } from "./local_packages/deepkit-openapi/module";
 import { httpMiddleware } from "@deepkit/http";
 
 export class AppConfig {
+  // Will read from `APP_ENVIRONMENT` environment variable
   environment: "production" | "development" = "development";
+
+  // Will read from `APP_PUBLIC_URL` environment variable
+  publicUrl: string = "http://localhost:8080";
 }
 
 new App({
