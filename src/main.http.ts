@@ -2,9 +2,9 @@ import { HttpBody, http } from "@deepkit/http";
 import * as fsPromise from "fs/promises";
 
 export class MainControllerHttp {
-  @http.GET("/hello")
-  helloWorld() {
-    return { hello: "world" };
+  @http.GET("/hello/:name")
+  helloWorld(name: string) {
+    return { hello: name };
   }
 
   @http.GET("/file/read/:filePath")
