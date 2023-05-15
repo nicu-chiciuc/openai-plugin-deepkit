@@ -3,7 +3,7 @@ import { FrameworkModule } from "@deepkit/framework";
 import { Logger, JSONTransport } from "@deepkit/logger";
 
 import { MainControllerHttp } from "./src/main.http";
-// import { CorsMiddleware } from "./src/cors.middleware";
+import { WellKnownControllerHttp } from "./src/well-known.http";
 import { OpenAPIModule } from "./local_packages/deepkit-openapi/module";
 import { httpMiddleware } from "@deepkit/http";
 
@@ -14,7 +14,7 @@ export class AppConfig {
 new App({
   config: AppConfig,
   middlewares: [],
-  controllers: [MainControllerHttp],
+  controllers: [WellKnownControllerHttp, MainControllerHttp],
   providers: [],
   imports: [
     new OpenAPIModule(),
