@@ -2,42 +2,21 @@ import { HttpBody, HttpRegExp, http } from "@deepkit/http";
 import * as fsPromise from "fs/promises";
 
 export class MainControllerHttp {
-  @http.GET("/file/read/:filePath")
+  @http.GET("/file/read/*")
   async readFile(filePath: HttpRegExp<string, ".*">) {
-    try {
-      return await fsPromise.readFile(`${filePath}`, "utf8");
-    } catch (error: any) {
-      return { error: error.message };
-    }
+    return fsPromise.readFile(`${filePath}`, "utf8");
   }
 
-  @http.POST("/file/write/:filePath")
+  @http.POST("/file/write/*")
   async writeFile(
     filePath: HttpRegExp<string, ".*">,
     { content }: HttpBody<{ content: string }>
   ) {
-    try {
-      return await fsPromise.writeFile(`${filePath}`, content, "utf8");
-    } catch (error: any) {
-      return { error: error.message };
-    }
+    return fsPromise.writeFile(`${filePath}`, content, "utf8");
   }
 
-  @http.GET("/file/list/:dirPath")
+  @http.GET("/file/list/*")
   async listFiles(dirPath: HttpRegExp<string, ".*">) {
-    try {
-      return await fsPromise.readdir(`${dirPath}`);
-    } catch (error: any) {
-      return { error: error.message };
-    }
-  }
-
-  @http.GET("/file/list")
-  async listCurrentFiles() {
-    try {
-      return await fsPromise.readdir(".");
-    } catch (error: any) {
-      return { error: error.message };
-    }
+    return fsPromise.readdir(`${dirPath}`);
   }
 }
