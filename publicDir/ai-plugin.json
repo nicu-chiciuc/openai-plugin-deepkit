@@ -9,10 +9,10 @@
   },
   "api": {
     "type": "openapi",
-    "url": "https://05a55828b4d4.ngrok.app/openapi/openapi.yaml",
+    "url": "https://234eccd88ba4.ngrok.app/openapi/openapi.yaml",
     "is_user_authenticated": false
   },
-  "logo_url": "https://05a55828b4d4.ngrok.app/logo.png",
+  "logo_url": "https://234eccd88ba4.ngrok.app/logo.png",
   "contact_email": "support@example.com",
   "legal_info_url": "http://www.example.com/legal"
 }

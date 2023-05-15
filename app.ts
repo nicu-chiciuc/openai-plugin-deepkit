@@ -2,26 +2,29 @@ import { App } from "@deepkit/app";
 import { FrameworkModule } from "@deepkit/framework";
 import { Logger, JSONTransport } from "@deepkit/logger";
 
-import { HelloWorldControllerCli } from "./src/controller/hello-world.cli";
-import { MainControllerHttp } from "./src/http/main.http";
-import { CorsMiddleware, PublicControllerHttp } from "./src/http/public.http";
-import { HelloWorldControllerRpc } from "./src/controller/hello-world.rpc";
-import { Service } from "./src/app/service";
-import { AppConfig } from "./src/app/config";
-import { OpenAPIModule } from "./src/openapi/deepkit-openapi/module";
+import { MainControllerHttp } from "./src/main.http";
+import { CorsMiddleware } from "./src/cors.middleware";
+import { OpenAPIModule } from "./local_packages/deepkit-openapi/module";
 import { httpMiddleware } from "@deepkit/http";
+
+export class AppConfig {
+  environment: "production" | "development" = "development";
+}
 
 new App({
   config: AppConfig,
   middlewares: [httpMiddleware.for(CorsMiddleware)],
-  controllers: [
-    // HelloWorldControllerCli,
-    MainControllerHttp,
-    PublicControllerHttp,
-    // HelloWorldControllerRpc,
+  controllers: [MainControllerHttp],
+  providers: [CorsMiddleware],
+  imports: [
+    new OpenAPIModule(),
+    new FrameworkModule({
+      debug: true,
+
+      // This is the default value for the publicDir option
+      publicDir: "publicDir",
+    }),
   ],
-  providers: [Service, CorsMiddleware],
-  imports: [new OpenAPIModule(), new FrameworkModule({ debug: true })],
 })
   .loadConfigFromEnv({ envFilePath: ["production.env", ".env"] })
   .setup((module, config: AppConfig) => {
@@ -35,4 +38,5 @@ new App({
         .configure({ debug: false });
     }
   })
+
   .run();
