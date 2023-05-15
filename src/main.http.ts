@@ -2,7 +2,7 @@ import { HttpBody, HttpRegExp, http } from "@deepkit/http";
 import * as fsPromise from "fs/promises";
 
 export class MainControllerHttp {
-  @http.GET("/file/read/*")
+  @http.GET("/file/read/:filePath")
   async readFile(filePath: HttpRegExp<string, ".*">) {
     return fsPromise.readFile(`${filePath}`, "utf8");
   }
