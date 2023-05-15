@@ -2,6 +2,11 @@ import { HttpBody, http } from "@deepkit/http";
 import * as fsPromise from "fs/promises";
 
 export class MainControllerHttp {
+  @http.GET("/hello")
+  helloWorld() {
+    return { hello: "world" };
+  }
+
   @http.GET("/file/read/:filePath")
   async readFile(filePath: string) {
     try {

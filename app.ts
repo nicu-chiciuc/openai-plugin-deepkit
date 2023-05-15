@@ -3,7 +3,7 @@ import { FrameworkModule } from "@deepkit/framework";
 import { Logger, JSONTransport } from "@deepkit/logger";
 
 import { MainControllerHttp } from "./src/main.http";
-import { CorsMiddleware } from "./src/cors.middleware";
+// import { CorsMiddleware } from "./src/cors.middleware";
 import { OpenAPIModule } from "./local_packages/deepkit-openapi/module";
 import { httpMiddleware } from "@deepkit/http";
 
@@ -13,9 +13,9 @@ export class AppConfig {
 
 new App({
   config: AppConfig,
-  middlewares: [httpMiddleware.for(CorsMiddleware)],
+  middlewares: [],
   controllers: [MainControllerHttp],
-  providers: [CorsMiddleware],
+  providers: [],
   imports: [
     new OpenAPIModule(),
     new FrameworkModule({
