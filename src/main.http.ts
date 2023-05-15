@@ -13,7 +13,7 @@ export class MainControllerHttp {
 
   @http.POST("/file/write/:filePath")
   async writeFile(
-    filePath: string,
+    filePath: HttpRegExp<string, ".*">,
     { content }: HttpBody<{ content: string }>
   ) {
     try {
@@ -24,7 +24,7 @@ export class MainControllerHttp {
   }
 
   @http.GET("/file/list/:dirPath")
-  async listFiles(dirPath: string) {
+  async listFiles(dirPath: HttpRegExp<string, ".*">) {
     try {
       return await fsPromise.readdir(`${dirPath}`);
     } catch (error: any) {
