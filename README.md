@@ -20,9 +20,9 @@ npm run dev
 # Info
 
 The code was created using `npm init @deepkit/app openapi-plugin-deepkit`.
-The full README: `https://github.com/deepkit/deepkit-framework/blob/master/packages/create-app/files/README.md`
+The full README: https://github.com/deepkit/deepkit-framework/blob/master/packages/create-app/files/README.md
 
-I tried installing `npm install deepkit-openapi` (`https://github.com/hanayashiki/deepkit-openapi`)
+I tried installing `npm install deepkit-openapi` (https://github.com/hanayashiki/deepkit-openapi)
 but I've encountered errors, so I've copied the contens of the `deepkit-openapi` and `deepkit-openapi-core` packages into the `src/openapi` folder.
 
 I couldn't figure out how to fix the CORS issue when running from my local machine, so I used ngrok to create a tunnel to the server.
