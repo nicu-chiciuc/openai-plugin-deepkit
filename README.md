@@ -14,7 +14,7 @@ cp .env.template .env
 npm install
 
 # Start the server
-npm run app:watch server:start
+npm run dev
 ```
 
 # Info
