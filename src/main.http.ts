@@ -2,15 +2,11 @@ import { HttpBody, http } from "@deepkit/http";
 import * as fsPromise from "fs/promises";
 
 export class MainControllerHttp {
-  @http.GET("/hello/:name")
-  helloWorld(name: string) {
-    return { hello: name };
-  }
 
   @http.GET("/file/read/:filePath")
   async readFile(filePath: string) {
     try {
-      return await fsPromise.readFile(`${__dirname}/${filePath}`, "utf8");
+      return await fsPromise.readFile(`${filePath}`, "utf8");
     } catch (error: any) {
       return { error: error.message };
     }
@@ -23,7 +19,7 @@ export class MainControllerHttp {
   ) {
     try {
       return await fsPromise.writeFile(
-        `${__dirname}/${filePath}`,
+        `${filePath}`,
         content,
         "utf8"
       );
@@ -35,7 +31,16 @@ export class MainControllerHttp {
   @http.GET("/file/list/:dirPath")
   async listFiles(dirPath: string) {
     try {
-      return await fsPromise.readdir(`${__dirname}/${dirPath}`);
+      return await fsPromise.readdir(`${dirPath}`);
+    } catch (error: any) {
+      return { error: error.message };
+    }
+  }
+
+  @http.GET("/file/list")
+  async listCurrentFiles() {
+    try {
+      return await fsPromise.readdir('.');
     } catch (error: any) {
       return { error: error.message };
     }
