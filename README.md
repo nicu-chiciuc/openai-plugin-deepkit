@@ -7,7 +7,7 @@
 # To solve this, we can use ngrok to create a tunnel to the server.
 ngrok http 8080
 
-# IMPORTANT: Copy the ngrok URL and paste it in the .env file, in the NGROK_URL variable.
+# IMPORTANT: Copy the ngrok URL and paste it in the .env file, in the APP_PUBLIC_URL variable.
 cp .env.template .env
 
 
