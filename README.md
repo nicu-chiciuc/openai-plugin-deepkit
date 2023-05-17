@@ -15,6 +15,8 @@ npm install
 
 # Start the server
 npm run dev
+
+# Now copy the ngrok link into the chat plugin field
 ```
 
 # Info
